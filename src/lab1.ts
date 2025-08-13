@@ -87,6 +87,23 @@ function addBST(bakemons: Bakemon[]): (Bakemon &{bst:number})[] {
 
 function findStrongestByType(
   bakemons: Bakemon[]
-): unknown {
-  return
+): {[key in BakemonType]?: Bakemon & {bst:number}} {
+  const BSTBakemons: (Bakemon & {bst:number})[]=addBST(bakemons);
+
+  const strongestByType: {[key in BakemonType]?: Bakemon & {bst:number}}={};
+  BSTBakemons.forEach(b=>{
+    // Si el bst del pokemon tipo T es mayor al que está en strongestByType, o es el primero que ponemos, lo reemplazamos
+    if (!strongestByType[b.type] || b.bst>strongestByType[b.type]!.bst){
+      strongestByType[b.type]=b;
+    }
+    // Si hay un tipo secundario, verificamos lo mismo que el de arriba
+    if(b.secondary_type){
+      if(!strongestByType[b.secondary_type] || b.bst > strongestByType[b.secondary_type]!.bst){
+        strongestByType[b.secondary_type] = b;
+      }
+    }
+  });
+  // Finalmente retornamos el objeto
+  return strongestByType;
+  
 }
