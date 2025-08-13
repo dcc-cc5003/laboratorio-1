@@ -68,7 +68,18 @@ interface Bakemon {
  */
 
 function filterByType(bakemons: Bakemon[], type: unknown): unknown {
-  return
+  // Para esta función vamos a recorrer los bakemons recibidos y verificamos
+  // si el tipo dado coincide con su tipo primario o secundario
+
+  const filteredBakemon: Array<Bakemon> = [];
+
+  bakemons.forEach((b) => {
+    if (b.type === type as string || b.secondary_type === type as string){
+      filteredBakemon.push(b)
+    }
+  })
+
+  return filteredBakemon;
 }
 
 /**
