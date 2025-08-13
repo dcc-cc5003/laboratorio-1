@@ -11,7 +11,7 @@
  * =============================
  */
 
-const data = require('../data.json') as Bakemon[]
+const data = require('./bakemons.json') as Bakemon[]
 
 interface Bakemon {
   // ...
