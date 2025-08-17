@@ -16,5 +16,9 @@
     "@types/node": "^24.2.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "package.json": "^0.0.0",
+    "tsconfig.json": "^1.0.0"
   }
 }
