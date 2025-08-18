@@ -153,7 +153,7 @@ interface Bakemon {
   id: number;
   name: string;
   type: BakemonType;                // todos tienen tipo
-  secondary_type?: BakemonType;     // no todos tienen tipo secundario → opcional
+  secondary_type?: BakemonType;     // no todos tienen tipo secundario 
   stats: Stats;
   moves: Move[];
 }
@@ -221,7 +221,7 @@ function findStrongestByType(
 /**
  * 
 Por que elegi ese tipo de retorno...
-Partial<Record<BakemonType, WithBST>>: modela literal un diccionario “TIPO → Bakemon ganador con bst”.
+Partial<Record<BakemonType, WithBST>>: modela precisamente un diccionario “TIPO -> Bakemon ganador con bst”.
 Partial porque puede que no haya Bakemon de algún tipo en los datos.
 WithBST para exponer el bst ya calculado (evitas recomputar al mostrar/ordenar).
  */
