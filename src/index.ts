@@ -51,7 +51,7 @@ Es mas, en el programa 1 se cae en runtime, mientras que
 el programa 2 porque como dijimos se cae en compilacion porque se necesita refinar el tipo 
 para llamarlo
 
-Este es el error
+Este es el error del programa 2 (en tiempo de compilacion!!!)
 
 src/index.ts:2:14 - error TS18046: 'data' is of type 'unknown'.
 
@@ -61,7 +61,7 @@ src/index.ts:2:14 - error TS18046: 'data' is of type 'unknown'.
 
 Found 1 error in src/index.ts:2,
 
-mientras que el error del programa 1 es 
+mientras que el error del programa 1 es (en runtime)
 
 > ts-any-demo@1.0.0 start
 > npm run build && node dist/index.js
