@@ -95,8 +95,10 @@ function filterByType(bakemons: Bakemon[], type: BakemonType): Bakemon[] {
  *  PREGUNTA 4
  * =============================
  */
+//La funcion recibe un array de Bakemon y devuelve un array de type BakemonBST, el cual es un tipo intereseccion que se define agregando la propiedad BST a los Bakemon mediante &. Esto para no modificar el tipo original de Bakemon.
+type BakemonBST = Bakemon & { BST: number };
 
-function addBST(bakemons: Bakemon[]): (Bakemon & { BST: number })[] {
+function addBST(bakemons: Bakemon[]): BakemonBST[] {
   return bakemons.map(b => {
     const BST = b.stats.atk + b.stats.def + b.stats.hp + b.stats.sp_atk + b.stats.sp_def + b.stats.speed;
     return {...b, BST};
@@ -109,10 +111,11 @@ function addBST(bakemons: Bakemon[]): (Bakemon & { BST: number })[] {
  * =============================
  */
 
-function findStrongestByType(bakemons: Bakemon[]): Record<BakemonType, (Bakemon & { BST: number }) | null> {
+//Esta funcion recibe un array de Bakemons y devuelve un Record que tiene llave Bakemontype y tiene como valor el tipo BakemonBST definido anteriormente o null, para manejar el caso de que no existan Bakemons de ese tipo.
+function findStrongestByType(bakemons: Bakemon[]): Record<BakemonType, BakemonBST | null> {
   const BakemonsBST = addBST(bakemons);
 
-  const strongest = {} as Record<BakemonType, (Bakemon & { BST: number }) | null>;
+  const strongest = {} as Record<BakemonType, BakemonBST | null>;
 
   const types: BakemonType[] = [
     "NORMAL", "FIRE", "WATER", "ELECTRIC", "GRASS", "ICE",
@@ -121,7 +124,7 @@ function findStrongestByType(bakemons: Bakemon[]): Record<BakemonType, (Bakemon 
   ];
 
   for (const t of types) {
-    const filtered = filterByType(BakemonsBST, t) as (Bakemon & { BST: number })[];
+    const filtered = filterByType(BakemonsBST, t) as BakemonBST[];
 
     if (filtered.length > 0) {
       const best = filtered.reduce((max, b) => (b.BST > max.BST ? b : max));
@@ -132,4 +135,3 @@ function findStrongestByType(bakemons: Bakemon[]): Record<BakemonType, (Bakemon 
   }
   return strongest;
 }
-console.log(filterByType(data, "FIRE"));
